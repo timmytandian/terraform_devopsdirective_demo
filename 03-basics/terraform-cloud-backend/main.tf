@@ -1,9 +1,9 @@
 terraform {
   backend "remote" {
-    organization = "devops-directive"
+    organization = "timmytandian"
 
     workspaces {
-      name = "devops-directive-terraform-course"
+      name = "terraform_devopsdirective_demo"
     }
   }
 
@@ -16,5 +16,5 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-northeast-1"
 }
