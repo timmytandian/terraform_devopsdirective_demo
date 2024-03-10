@@ -17,7 +17,7 @@ terraform {
       name = "terraform_devopsdirective_demo"
     }
   }
-  
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -27,11 +27,11 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-northeast-1"
 }
 
 resource "aws_instance" "instance_1" {
-  ami             = "ami-011899242bb902164" # Ubuntu 20.04 LTS // us-east-1
+  ami             = "ami-039e8f15ccb15368a" # Amazon Linux 2023 AMI, ap-northeast-1
   instance_type   = "t2.micro"
   security_groups = [aws_security_group.instances.name]
   user_data       = <<-EOF
@@ -42,7 +42,7 @@ resource "aws_instance" "instance_1" {
 }
 
 resource "aws_instance" "instance_2" {
-  ami             = "ami-011899242bb902164" # Ubuntu 20.04 LTS // us-east-1
+  ami             = "ami-039e8f15ccb15368a" # Amazon Linux 2023 AMI, ap-northeast-1
   instance_type   = "t2.micro"
   security_groups = [aws_security_group.instances.name]
   user_data       = <<-EOF
@@ -53,7 +53,7 @@ resource "aws_instance" "instance_2" {
 }
 
 resource "aws_s3_bucket" "bucket" {
-  bucket_prefix = "devops-directive-web-app-data"
+  bucket_prefix = "terraform_devopsdirective_demo-webapp"
   force_destroy = true
 }
 
