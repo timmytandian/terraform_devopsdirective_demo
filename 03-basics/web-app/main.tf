@@ -28,6 +28,8 @@ terraform {
 
 provider "aws" {
   region = "ap-northeast-1"
+  shared_credentials_file = "$HOME/.aws/credentials"
+  profile = "terraform"
 }
 
 resource "aws_instance" "instance_1" {
@@ -195,13 +197,13 @@ resource "aws_lb" "load_balancer" {
 
 }
 
-resource "aws_route53_zone" "primary" {
-  name = "devopsdeployed.com"
+data "aws_route53_zone" "primary" {
+  name = "timmytandian.com"
 }
 
 resource "aws_route53_record" "root" {
-  zone_id = aws_route53_zone.primary.zone_id
-  name    = "devopsdeployed.com"
+  zone_id = data.aws_route53_zone.primary.zone_id
+  name    = "tf-demo.timmytandian.com"
   type    = "A"
 
   alias {
