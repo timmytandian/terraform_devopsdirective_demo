@@ -1,12 +1,10 @@
 terraform {
-  # Assumes s3 bucket and dynamo DB table already set up
-  # See /code/03-basics/aws-backend
-  backend "s3" {
-    bucket         = "devops-directive-tf-state"
-    key            = "04-variables-and-outputs/web-app/terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "terraform-state-locking"
-    encrypt        = true
+  backend "remote" {
+    organization = "timmytandian"
+
+    workspaces {
+      name = "terraform_devopsdirective_demo"
+    }
   }
 
   required_providers {
@@ -187,13 +185,13 @@ resource "aws_lb" "load_balancer" {
 
 }
 
-resource "aws_route53_zone" "primary" {
-  name = var.domain
+data "aws_route53_zone" "primary" {
+  name = var.domain_zone
 }
 
 resource "aws_route53_record" "root" {
-  zone_id = aws_route53_zone.primary.zone_id
-  name    = var.domain
+  zone_id = data.aws_route53_zone.primary.zone_id
+  name    = var.domain_webroot
   type    = "A"
 
   alias {
