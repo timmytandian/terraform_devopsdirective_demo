@@ -5,3 +5,5 @@ S3_backend: "terraform-devopsdirective-demo-tfstate"
 [WebApp]
 AMI: "ami-039e8f15ccb15368a" # Amazon Linux 2023 AMI, ap-northeast-1
 S3: "terraform-devopsdirective-demo-webapp"
+domain_zone: "timmytandian.com"
+domain_webroot: "tf-demo.timmytandian.com"
