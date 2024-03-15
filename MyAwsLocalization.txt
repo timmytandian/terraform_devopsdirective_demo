@@ -1,7 +1,7 @@
 [General]
 region: ap-northeast-1
-S3_backend: "terraform_devopsdirective_demo-tfstate"
+S3_backend: "terraform-devopsdirective-demo-tfstate"
 
 [WebApp]
 AMI: "ami-039e8f15ccb15368a" # Amazon Linux 2023 AMI, ap-northeast-1
-S3: "terraform_devopsdirective_demo-webapp"
+S3: "terraform-devopsdirective-demo-webapp"
