@@ -3,7 +3,7 @@
 variable "region" {
   description = "Default region for provider"
   type        = string
-  default     = "us-east-1"
+  default     = "ap-northeast-1"
 }
 
 # EC2 Variables
@@ -11,7 +11,7 @@ variable "region" {
 variable "ami" {
   description = "Amazon machine image to use for ec2 instance"
   type        = string
-  default     = "ami-011899242bb902164" # Ubuntu 20.04 LTS // us-east-1
+  default     = "ami-039e8f15ccb15368a" # Amazon Linux 2023 AMI, ap-northeast-1
 }
 
 variable "instance_type" {
@@ -29,8 +29,13 @@ variable "bucket_prefix" {
 
 # Route 53 Variables
 
-variable "domain" {
-  description = "Domain for website"
+variable "domain_zone" {
+  description = "Domain zone ID of the Route53"
+  type        = string
+}
+
+variable "domain_webroot" {
+  description = "Domain name (root) of the website"
   type        = string
 }
 
