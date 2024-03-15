@@ -28,8 +28,6 @@ terraform {
 
 provider "aws" {
   region = "ap-northeast-1"
-  shared_credentials_file = "$HOME/.aws/credentials"
-  profile = "terraform"
 }
 
 resource "aws_instance" "instance_1" {
@@ -55,7 +53,7 @@ resource "aws_instance" "instance_2" {
 }
 
 resource "aws_s3_bucket" "bucket" {
-  bucket_prefix = "terraform_devopsdirective_demo-webapp"
+  bucket_prefix = "terraform-devopsdirective-demo-webapp"
   force_destroy = true
 }
 
