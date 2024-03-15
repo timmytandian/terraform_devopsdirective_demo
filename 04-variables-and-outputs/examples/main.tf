@@ -1,10 +1,10 @@
 terraform {
-  backend "s3" {
-    bucket         = "devops-directive-tf-state"
-    key            = "04-variables-and-outputs/examples/terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "terraform-state-locking"
-    encrypt        = true
+  backend "remote" {
+    organization = "timmytandian"
+
+    workspaces {
+      name = "terraform_devopsdirective_demo"
+    }
   }
 
   required_providers {
@@ -16,7 +16,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-northeast-1"
 }
 
 locals {
