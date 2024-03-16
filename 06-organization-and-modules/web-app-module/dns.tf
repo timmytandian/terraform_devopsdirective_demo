@@ -1,11 +1,11 @@
 resource "aws_route53_zone" "primary" {
   count = var.create_dns_zone ? 1 : 0
-  name  = var.domain
+  name  = var.domain_zone
 }
 
 data "aws_route53_zone" "primary" {
   count = var.create_dns_zone ? 0 : 1
-  name  = var.domain
+  name  = var.domain_zone
 }
 
 locals {
@@ -15,7 +15,7 @@ locals {
 
 resource "aws_route53_record" "root" {
   zone_id = local.dns_zone_id
-  name    = "${local.subdomain}${var.domain}"
+  name    = "${local.subdomain}${var.domain_webroot}"
   type    = "A"
 
   alias {
