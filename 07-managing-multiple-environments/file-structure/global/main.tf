@@ -1,12 +1,11 @@
 terraform {
-  # Assumes s3 bucket and dynamo DB table already set up
-  # See /code/03-basics/aws-backend
-  backend "s3" {
-    bucket         = "devops-directive-tf-state"
-    key            = "07-managing-multiple-environments/global/terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "terraform-state-locking"
-    encrypt        = true
+  # Use Terraform Cloud as the backend
+  cloud {
+    organization = "timmytandian"
+
+    workspaces {
+        name = "terraform_devopsdirective_demo"
+    }
   }
 
   required_providers {
@@ -18,10 +17,10 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-northeast-1"
 }
 
 # Route53 zone is shared across staging and production
-resource "aws_route53_zone" "primary" {
-  name = "devopsdeployed.com"
+data "aws_route53_zone" "primary" {
+  name = "timmytandian.com"
 }
