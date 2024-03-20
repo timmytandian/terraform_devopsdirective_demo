@@ -1,12 +1,11 @@
 terraform {
-  # Assumes s3 bucket and dynamo DB table already set up
-  # See /code/03-basics/aws-backend
-  backend "s3" {
-    bucket         = "devops-directive-tf-state"
-    key            = "08-testing/examples/hello-world/terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "terraform-state-locking"
-    encrypt        = true
+  # Terraform Cloud as remote backend
+  cloud {
+    organization = "timmytandian"
+
+    workspaces {
+      name = "terraform_devopsdirective_demo"
+    }
   }
 
   required_providers {
@@ -18,7 +17,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-northeast-1"
 }
 
 
